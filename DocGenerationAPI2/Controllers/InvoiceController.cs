@@ -6,10 +6,12 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using DocGenerationAPI2.Entites;
 using DocGenerationAPI2.Invoice_Generation;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DocGenerationAPI2.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/invoices")]
     public class InvoiceController : ControllerBase
     {

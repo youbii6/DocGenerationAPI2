@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using DocGenerationAPI2.Models;
 using DocGenerationAPI2.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocGenerationAPI2.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/clients")]
 
     public class ClientController : ControllerBase
