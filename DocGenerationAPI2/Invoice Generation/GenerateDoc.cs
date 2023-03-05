@@ -9,6 +9,9 @@ using System.Reflection.Metadata;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using iTextSharp.text.pdf.parser;
+using DocGenerationAPI2.Entites;
+using Microsoft.AspNetCore.Components.Routing;
+using System.IO;
 
 namespace DocGenerationAPI2.Invoice_Generation
 {
@@ -43,7 +46,10 @@ namespace DocGenerationAPI2.Invoice_Generation
             _fontStyle = FontFactory.GetFont("Tahoma", 8f, 1);
 
             // Create a new PDF writer
-            PdfWriter.GetInstance(_document, _memoryStream);
+            PdfWriter writer = PdfWriter.GetInstance(_document, _memoryStream);
+            
+
+
 
             _document.Open();
 
@@ -54,7 +60,7 @@ namespace DocGenerationAPI2.Invoice_Generation
            
 
 
-            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance("https://cedinterimprofessionals.nl/wp-content/uploads/2022/01/ced_rgb_groot.png");
+            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance("ced.png");
             // Set the position of the image on the page
             
             image.SetAbsolutePosition(_document.Left,_document.Top);
@@ -68,10 +74,23 @@ namespace DocGenerationAPI2.Invoice_Generation
             _document.Add(new Paragraph(" "));
 
             this.InvoiceHeader();
-            this.InvoiceBody();
+
             _pdfTable.HeaderRows = 2;
             _document.Add(_pdfTable);
+
+
+            this.InvoiceBody2(writer);
+
+          
             _document.Close();
+
+            byte[] bytes = _memoryStream.ToArray();
+            PdfReader reader = new PdfReader(bytes);
+            
+
+            // Get the total number of pages
+            int totalPages = reader.NumberOfPages;
+            Console.WriteLine(totalPages);
             return _memoryStream.ToArray();
 
         }
@@ -116,7 +135,7 @@ namespace DocGenerationAPI2.Invoice_Generation
         }
 
 
-        private void InvoiceBody()
+        private void InvoiceBody(PdfWriter writer)
         {
             #region Table header
             _fontStyle = FontFactory.GetFont("Tahoma", 12f, 1);
@@ -165,7 +184,9 @@ namespace DocGenerationAPI2.Invoice_Generation
                 _pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
                 _pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 _pdfCell.BackgroundColor = BaseColor.WHITE;
+                _pdfCell.FixedHeight = 50f;
                 _pdfTable.AddCell(_pdfCell);
+               
 
                 _pdfCell = new PdfPCell(new Phrase(line.Service.Provider.ToString(), _fontStyle));
                 _pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -189,31 +210,80 @@ namespace DocGenerationAPI2.Invoice_Generation
                 _pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
                 _pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 _pdfCell.BackgroundColor = BaseColor.WHITE;
+
                 _pdfTable.AddCell(_pdfCell);
                 _pdfTable.CompleteRow();
+                line.PageNumber = 1;
+                if (line.Id >= 19) 
+                {
+                    line.PageNumber = 2;
+                }
+          
 
                 total += (line.Qte * line.Service.Price);
 
             }
+
+            
+           
+            InvoiceFooter footer = new InvoiceFooter(_invoiceLines);
+            writer.PageEvent = footer;
+
+
+
             _pdfCell = new PdfPCell(new Phrase("", _fontStyle));
             _pdfCell.Colspan = 3;
+            _pdfCell.Border = 0;
             _pdfTable.AddCell(_pdfCell);
 
 
             _pdfCell = new PdfPCell(new Phrase("Total Price :", _fontStyle));
-            _pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            _pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT;
             _pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+            _pdfCell.BorderWidthRight= 0;
             _pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            
             _pdfTable.AddCell(_pdfCell);
 
             _pdfCell = new PdfPCell(new Phrase( total+"  Dt", _fontStyle));
             _pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
             _pdfCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+           
             _pdfCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             _pdfTable.AddCell(_pdfCell);
             _pdfTable.CompleteRow();
 
             #endregion
+            
+        }
+
+        private void InvoiceBody2(PdfWriter writer)
+        {
+            _fontStyle = FontFactory.GetFont("Tahoma", 12f, 1);
+
+            _document.Add(new Paragraph($" ID    |    Service Provider    | Service Price |    Service Qte/Hour    |    Service Total Price "));
+
+            var _invoiceLines = _invoice.InvoiceLines;
+            int total = 0;
+            foreach (InvoiceLineDto line in _invoiceLines)
+            {
+                _document.Add(new Paragraph($" {line.Id.ToString()}  |   {line.Service.Provider.ToString()}  | {line.Service.Price.ToString()} |   {line.Qte.ToString()}   |  {(line.Qte * line.Service.Price).ToString()} "));
+                _document.Add(new Paragraph("  "));
+                _document.Add(new Paragraph("  "));
+
+                line.PageNumber = writer.CurrentPageNumber;
+
+                total += (line.Qte * line.Service.Price);
+                InvoiceFooter footer = new InvoiceFooter(_invoiceLines);
+                writer.PageEvent = footer;
+            }
+           
+            _document.Add(new Paragraph($"Total Price :{total}  "));
+
+           
+
+            // Call OnOpenDocument method of footer manually to add the footer to the first page
+                                 
         }
     }
 }

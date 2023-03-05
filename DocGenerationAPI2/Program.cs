@@ -16,6 +16,20 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DocGenerationAPI2Context>(
      dbContextOptions => dbContextOptions.UseSqlite("Data Source=DocGenerationAPI2.db"));
 
+
+//builder.Services.AddDbContext<DocGenerationAPI2Context>(
+  //  dbContextOptions => dbContextOptions.UseSqlServer(
+    //    "Server=DESKTOP-1HTRG41\\SQLSERVER001;Database=DocGenerationAPI2;Trusted_Connection=True;"
+    //)
+//);
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+
+using (var dbContext = serviceProvider.GetRequiredService<DocGenerationAPI2Context>())
+{
+    dbContext.Database.EnsureCreated();
+}
+
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
 

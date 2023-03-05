@@ -3,6 +3,7 @@ using System;
 using DocGenerationAPI2.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocGenerationAPI2.Migrations
 {
     [DbContext(typeof(DocGenerationAPI2Context))]
-    partial class DocGenerationAPI2ContextModelSnapshot : ModelSnapshot
+    [Migration("20230303101257_la7thet_el_ha9i9a")]
+    partial class la7thet_el_ha9i9a
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");

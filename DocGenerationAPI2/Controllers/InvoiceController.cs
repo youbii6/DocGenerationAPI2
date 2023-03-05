@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace DocGenerationAPI2.Controllers
 {
     [ApiController]
-    [Authorize]
+    
     [Route("api/invoices")]
     public class InvoiceController : ControllerBase
     {

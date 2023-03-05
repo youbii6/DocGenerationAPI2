@@ -138,6 +138,174 @@ namespace DocGenerationAPI2.DbContexts
                     InvoiceId = 3
 
 
+                }, new InvoiceLine(2)
+                {
+                    Id = 9,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 10,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 11,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 12,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 13,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 14,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 15,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 16,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 17,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 18,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 19,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 20,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id =21,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 22,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 23,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 24,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 25,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 26,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 27,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 28,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 29,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 30,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 31,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
+                }, new InvoiceLine(2)
+                {
+                    Id = 32,
+                    ServiceId = 1,
+                    InvoiceId = 3
+
+
                 });
             modelBuilder.Entity<Service>().HasData(
                 new Service("Provider x",30)

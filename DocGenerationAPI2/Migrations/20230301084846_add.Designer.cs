@@ -3,6 +3,7 @@ using System;
 using DocGenerationAPI2.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocGenerationAPI2.Migrations
 {
     [DbContext(typeof(DocGenerationAPI2Context))]
-    partial class DocGenerationAPI2ContextModelSnapshot : ModelSnapshot
+    [Migration("20230301084846_add")]
+    partial class add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
@@ -77,35 +79,35 @@ namespace DocGenerationAPI2.Migrations
                         {
                             Id = 1,
                             ClientId = 1,
-                            CreationDate = new DateTime(2023, 3, 3, 10, 12, 57, 407, DateTimeKind.Utc).AddTicks(3575),
+                            CreationDate = new DateTime(2023, 3, 1, 8, 48, 45, 706, DateTimeKind.Utc).AddTicks(9416),
                             Name = "invoice 1"
                         },
                         new
                         {
                             Id = 2,
                             ClientId = 1,
-                            CreationDate = new DateTime(2023, 3, 3, 10, 12, 57, 407, DateTimeKind.Utc).AddTicks(3583),
+                            CreationDate = new DateTime(2023, 3, 1, 8, 48, 45, 706, DateTimeKind.Utc).AddTicks(9421),
                             Name = "invoice 2"
                         },
                         new
                         {
                             Id = 3,
                             ClientId = 2,
-                            CreationDate = new DateTime(2023, 3, 3, 10, 12, 57, 407, DateTimeKind.Utc).AddTicks(3585),
+                            CreationDate = new DateTime(2023, 3, 1, 8, 48, 45, 706, DateTimeKind.Utc).AddTicks(9422),
                             Name = "invoice 3"
                         },
                         new
                         {
                             Id = 4,
                             ClientId = 2,
-                            CreationDate = new DateTime(2023, 3, 3, 10, 12, 57, 407, DateTimeKind.Utc).AddTicks(3586),
+                            CreationDate = new DateTime(2023, 3, 1, 8, 48, 45, 706, DateTimeKind.Utc).AddTicks(9422),
                             Name = "invoice 4"
                         },
                         new
                         {
                             Id = 5,
                             ClientId = 3,
-                            CreationDate = new DateTime(2023, 3, 3, 10, 12, 57, 407, DateTimeKind.Utc).AddTicks(3586),
+                            CreationDate = new DateTime(2023, 3, 1, 8, 48, 45, 706, DateTimeKind.Utc).AddTicks(9423),
                             Name = "invoice 5"
                         });
                 });
@@ -298,62 +300,6 @@ namespace DocGenerationAPI2.Migrations
                         new
                         {
                             Id = 24,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 25,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 26,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 27,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 28,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 29,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 30,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 31,
-                            InvoiceId = 3,
-                            Qte = 2,
-                            ServiceId = 1
-                        },
-                        new
-                        {
-                            Id = 32,
                             InvoiceId = 3,
                             Qte = 2,
                             ServiceId = 1
